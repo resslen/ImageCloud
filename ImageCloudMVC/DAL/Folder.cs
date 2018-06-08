@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,10 @@ namespace ImageCloudMVC.DAL
         public int AmountOfFiles { get; set; }
 
 
-        public virtual IList<File> Files { get; set; }
-        public virtual IList<Folder> Folders { get; set; }
+        public virtual ICollection<File> Files { get; set; }
+        public int? ParentFolderId { get; set; }
+        public Folder ParentFolder { get; set; }
+        [InverseProperty(nameof(ParentFolder))]
+        public virtual ICollection<Folder> Folders { get; set; }
     }
 }

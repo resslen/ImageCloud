@@ -213,6 +213,14 @@
     <Compile Include="Migrations\201806081512300_initial.Designer.cs">
       <DependentUpon>201806081512300_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806082326304_add_parent_folder_to_folder.cs" />
+    <Compile Include="Migrations\201806082326304_add_parent_folder_to_folder.Designer.cs">
+      <DependentUpon>201806082326304_add_parent_folder_to_folder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806082332180_add_parent_folder_to_folder_fix.cs" />
+    <Compile Include="Migrations\201806082332180_add_parent_folder_to_folder_fix.Designer.cs">
+      <DependentUpon>201806082332180_add_parent_folder_to_folder_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountListView.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -220,6 +228,10 @@
     <Compile Include="Models\Files\FileListViewModel.cs" />
     <Compile Include="Models\Files\FilesView.cs" />
     <Compile Include="Models\Files\FileViewModel.cs" />
+    <Compile Include="Models\Folders\EditFolderViewModel.cs" />
+    <Compile Include="Models\Folders\FolderDetailViewModel.cs" />
+    <Compile Include="Models\Folders\FolderListViewModel.cs" />
+    <Compile Include="Models\Folders\NewFolderViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Files\NewFileViewModel.cs" />
@@ -297,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Folders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -315,6 +328,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806081512300_initial.resx">
       <DependentUpon>201806081512300_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806082326304_add_parent_folder_to_folder.resx">
+      <DependentUpon>201806082326304_add_parent_folder_to_folder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806082332180_add_parent_folder_to_folder_fix.resx">
+      <DependentUpon>201806082332180_add_parent_folder_to_folder_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
