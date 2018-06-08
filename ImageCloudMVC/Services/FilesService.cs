@@ -20,11 +20,25 @@ namespace ImageCloudMVC.Services
             _context = context;
         }
 
+        public File Find(int id)
+        {
+            var file = _context.Files
+                .Include(x => x.Folder)
+                .SingleOrDefault(x => x.Id == id);
+            
+            if (file == null)
+            {
+                throw new System.IO.FileNotFoundException();
+            }
+            return file;
+        }
+
         public IEnumerable<FileListViewModel> GetFiles()
         {
             var filesDal = _context.Files
+                .ProjectTo<FileListViewModel>(Mapper.Configuration)
                 .ToList();
-            return Mapper.Map<IEnumerable<FileListViewModel>>(filesDal);
+            return filesDal;
         }
 
         public IEnumerable<FilesView> GetRootFiles()
@@ -44,6 +58,17 @@ namespace ImageCloudMVC.Services
             _context.Files.Add(file);
             _context.SaveChanges();
             return file.Id;
+        }
+
+        public NewFileViewModel GetAddViewModel()
+        {
+            return new NewFileViewModel();
+        }
+
+        public FileViewModel FileById(int id)
+        {
+            var file = Find(id);
+            return Mapper.Map<FileViewModel>(file);
         }
     }
 }
