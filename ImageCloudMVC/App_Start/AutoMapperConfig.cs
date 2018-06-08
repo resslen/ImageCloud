@@ -17,6 +17,8 @@ namespace ImageCloudMVC.App_Start
             config.CreateMap<File, FilesView>();
             config.CreateMap<NewFileViewModel, File>();
             config.CreateMap<File, FileViewModel>();
+            config.CreateMap<EditFileViewModel, File>()
+                .ReverseMap();
         }
     }
 }

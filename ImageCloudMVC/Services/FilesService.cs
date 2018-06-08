@@ -77,5 +77,21 @@ namespace ImageCloudMVC.Services
             _context.Files.Remove(file);
             _context.SaveChanges();
         }
+
+        public EditFileViewModel GetEditViewModel(int id)
+        {
+            var file = _context.Files
+                        .Where(x => x.Id == id)
+                        .ProjectTo<EditFileViewModel>()
+                        .SingleOrDefault();
+            return file;
+        }
+
+        public void UpdateFile(int id, EditFileViewModel model)
+        {
+            var file = Find(id);
+            Mapper.Map(model, file);
+            _context.SaveChanges();
+        }
     }
 }

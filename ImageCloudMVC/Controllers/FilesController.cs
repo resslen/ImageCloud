@@ -32,28 +32,28 @@ namespace ImageCloudMVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
-        {
-            var model = _filesService.GetAddViewModel();
-            return View();
-        }
-
-        [HttpGet]
         public ActionResult Details(int id)
         {
             var model = _filesService.FileById(id);
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var model = _filesService.GetAddViewModel();
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult Add(NewFileViewModel model)
+        public ActionResult Create(NewFileViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 //filtry
                 //dodal service do obslugi bledow
                 //ViewBag.Message = _helperService.ModelErrorsToString(ModelState);
-                return Add();
+                return Create();
             }
             var id = _filesService.AddFile(model);
             return RedirectToAction("Details", new { Id = id });
@@ -64,6 +64,27 @@ namespace ImageCloudMVC.Controllers
         {
             _filesService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var model = _filesService.GetEditViewModel(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, EditFileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                //filtry
+                //dodal service do obslugi bledow
+                //ViewBag.Message = _helperService.ModelErrorsToString(ModelState);
+                return Edit(id);
+            }
+            _filesService.UpdateFile(id, model);
+            return RedirectToAction("Details", new { Id = id });
         }
 
     }

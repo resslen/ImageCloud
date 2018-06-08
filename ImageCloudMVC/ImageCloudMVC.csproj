@@ -216,6 +216,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountListView.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EditFileViewModel.cs" />
     <Compile Include="Models\FileListViewModel.cs" />
     <Compile Include="Models\FilesView.cs" />
     <Compile Include="Models\FileViewModel.cs" />
@@ -290,8 +291,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Files\Index.cshtml" />
     <Content Include="Views\Files\FilesRoot.cshtml" />
-    <Content Include="Views\Files\Add.cshtml" />
+    <Content Include="Views\Files\Create.cshtml" />
     <Content Include="Views\Files\Details.cshtml" />
+    <Content Include="Views\Files\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
