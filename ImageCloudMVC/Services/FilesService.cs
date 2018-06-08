@@ -70,5 +70,12 @@ namespace ImageCloudMVC.Services
             var file = Find(id);
             return Mapper.Map<FileViewModel>(file);
         }
+
+        public void Delete(int id)
+        {
+            var file = Find(id);
+            _context.Files.Remove(file);
+            _context.SaveChanges();
+        }
     }
 }

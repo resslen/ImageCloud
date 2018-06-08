@@ -59,6 +59,12 @@ namespace ImageCloudMVC.Controllers
             return RedirectToAction("Details", new { Id = id });
         }
 
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            _filesService.Delete(id);
+            return RedirectToAction("Index");
+        }
 
     }
 }
