@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ImageCloudMVC.Models
+namespace ImageCloudMVC.Models.Files
 {
-    public class NewFileViewModel
+    public class FilesView
     {
-        [Required]
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime DateOfUpload { get; set; }

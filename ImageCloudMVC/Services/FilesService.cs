@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ImageCloudMVC.DAL;
-using ImageCloudMVC.Models;
+using ImageCloudMVC.Models.Files;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using ImageCloudMVC.Models;
+﻿using ImageCloudMVC.Models.Files;
 using ImageCloudMVC.Services;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ImageCloudMVC.DAL;
 using ImageCloudMVC.Models;
+using ImageCloudMVC.Models.Files;
+
 
 namespace ImageCloudMVC.App_Start
 {
