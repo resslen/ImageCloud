@@ -19,7 +19,14 @@ namespace ImageCloudMVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = _foldersService.GetAll();
+            var model = _foldersService.GetFolderById(1);
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Subfolder(int id)
+        {
+            var model = _foldersService.GetFolderById(id);
             return View(model);
         }
     }
