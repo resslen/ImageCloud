@@ -21,6 +21,7 @@ namespace ImageCloudMVC.App_Start
         {
             builder.RegisterType<ImageCloudContext>().AsSelf().InstancePerRequest();
             builder.RegisterType<FilesService>();
+            builder.RegisterType<FoldersService>();
         }
     }
 }

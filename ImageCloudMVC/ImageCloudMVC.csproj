@@ -201,6 +201,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="Controllers\FoldersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\File.cs" />
@@ -226,11 +227,12 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Files\EditFileViewModel.cs" />
     <Compile Include="Models\Files\FileListViewModel.cs" />
+    <Compile Include="Models\Files\FileModel.cs" />
     <Compile Include="Models\Files\FilesView.cs" />
     <Compile Include="Models\Files\FileViewModel.cs" />
     <Compile Include="Models\Folders\EditFolderViewModel.cs" />
-    <Compile Include="Models\Folders\FolderDetailViewModel.cs" />
     <Compile Include="Models\Folders\FolderListViewModel.cs" />
+    <Compile Include="Models\Folders\FolderModel.cs" />
     <Compile Include="Models\Folders\NewFolderViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -306,10 +308,10 @@
     <Content Include="Views\Files\Create.cshtml" />
     <Content Include="Views\Files\Details.cshtml" />
     <Content Include="Views\Files\Edit.cshtml" />
+    <Content Include="Views\Folders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Folders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

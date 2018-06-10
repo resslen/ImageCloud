@@ -93,5 +93,11 @@ namespace ImageCloudMVC.Services
             Mapper.Map(model, file);
             _context.SaveChanges();
         }
+
+        public ICollection<FileModel> GetFilesForFolder()
+        {
+            IQueryable<File> filesDal = _context.Files;
+            return Mapper.Map<List<FileModel>>(filesDal);
+        }
     }
 }

@@ -7,5 +7,7 @@ namespace ImageCloudMVC.Models.Folders
 {
     public class EditFolderViewModel
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

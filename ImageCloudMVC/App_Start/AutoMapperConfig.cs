@@ -2,7 +2,7 @@
 using ImageCloudMVC.DAL;
 using ImageCloudMVC.Models;
 using ImageCloudMVC.Models.Files;
-
+using ImageCloudMVC.Models.Folders;
 
 namespace ImageCloudMVC.App_Start
 {
@@ -21,6 +21,11 @@ namespace ImageCloudMVC.App_Start
             config.CreateMap<File, FileViewModel>();
             config.CreateMap<EditFileViewModel, File>()
                 .ReverseMap();
+            config.CreateMap<Folder, FolderListViewModel>();
+            config.CreateMap<Folder, FolderModel>();
+            config.CreateMap<File, FileModel>();
+            config.CreateMap<FileModel, FolderListViewModel>();
+            config.CreateMap<FolderModel,FolderListViewModel>();
         }
     }
 }
