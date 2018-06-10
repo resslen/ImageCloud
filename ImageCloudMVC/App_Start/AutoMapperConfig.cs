@@ -21,11 +21,15 @@ namespace ImageCloudMVC.App_Start
             config.CreateMap<File, FileViewModel>();
             config.CreateMap<EditFileViewModel, File>()
                 .ReverseMap();
-            config.CreateMap<Folder, FolderListViewModel>();
-            config.CreateMap<Folder, FolderModel>();
             config.CreateMap<File, FileModel>();
             config.CreateMap<FileModel, FolderListViewModel>();
+
+            config.CreateMap<Folder, FolderListViewModel>();
+            config.CreateMap<Folder, FolderModel>();
             config.CreateMap<FolderModel,FolderListViewModel>();
+            config.CreateMap<EditFolderViewModel, Folder>()
+                .ReverseMap();
+            config.CreateMap<NewFolderViewModel, Folder>();
         }
     }
 }

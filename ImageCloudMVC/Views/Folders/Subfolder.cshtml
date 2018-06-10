@@ -2,12 +2,14 @@
 
 @{
     ViewBag.Title = "Subfolder";
+    var url = Url.RequestContext.RouteData.Values["id"];
+
 }
 
 <h2>Subfolder</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { id = url})
 </p>
 <table class="table">
     <tr>
@@ -36,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.AmountOfFiles)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Subfolder", "Subfolder", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

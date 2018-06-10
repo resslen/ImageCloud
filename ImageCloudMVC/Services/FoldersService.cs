@@ -49,5 +49,41 @@ namespace ImageCloudMVC.Services
             };
         }
 
+        public NewFolderViewModel GetAddViewModel()
+        {
+            return new NewFolderViewModel();
+        }
+
+        public int AddFolder(NewFolderViewModel model)
+        {
+            var folder = Mapper.Map<Folder>(model);
+            _context.Folders.Add(folder);
+            _context.SaveChanges();
+            return folder.Id;
+        }
+
+        public void Delete(int id)
+        {
+            var folder = Find(id);
+            _context.Folders.Remove(folder);
+            _context.SaveChanges();
+        }
+
+        public EditFolderViewModel GetEditViewModel(int id)
+        {
+            var folder = _context.Folders
+                        .Where(x => x.Id == id)
+                        .ProjectTo<EditFolderViewModel>()
+                        .SingleOrDefault();
+            return folder;
+        }
+
+        public void UpdateFolder(int id, EditFolderViewModel model)
+        {
+            var folder = Find(id);
+            Mapper.Map(model, folder);
+            _context.SaveChanges();
+        }
+
     }
 }

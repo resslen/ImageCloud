@@ -310,6 +310,8 @@
     <Content Include="Views\Files\Edit.cshtml" />
     <Content Include="Views\Folders\Index.cshtml" />
     <Content Include="Views\Folders\Subfolder.cshtml" />
+    <Content Include="Views\Folders\Edit.cshtml" />
+    <Content Include="Views\Folders\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
