@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201806082332180_add_parent_folder_to_folder_fix.Designer.cs">
       <DependentUpon>201806082332180_add_parent_folder_to_folder_fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806161640004_users.cs" />
+    <Compile Include="Migrations\201806161640004_users.Designer.cs">
+      <DependentUpon>201806161640004_users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountListView.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -339,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806082332180_add_parent_folder_to_folder_fix.resx">
       <DependentUpon>201806082332180_add_parent_folder_to_folder_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806161640004_users.resx">
+      <DependentUpon>201806161640004_users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
