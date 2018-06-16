@@ -226,6 +226,14 @@
     <Compile Include="Migrations\201806161640004_users.Designer.cs">
       <DependentUpon>201806161640004_users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806161721266_user_id.cs" />
+    <Compile Include="Migrations\201806161721266_user_id.Designer.cs">
+      <DependentUpon>201806161721266_user_id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806161820285_userid_int_toString.cs" />
+    <Compile Include="Migrations\201806161820285_userid_int_toString.Designer.cs">
+      <DependentUpon>201806161820285_userid_int_toString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountListView.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -346,6 +354,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806161640004_users.resx">
       <DependentUpon>201806161640004_users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806161721266_user_id.resx">
+      <DependentUpon>201806161721266_user_id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806161820285_userid_int_toString.resx">
+      <DependentUpon>201806161820285_userid_int_toString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

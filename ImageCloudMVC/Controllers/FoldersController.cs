@@ -1,5 +1,6 @@
 ﻿using ImageCloudMVC.Models.Folders;
 using ImageCloudMVC.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,17 @@ namespace ImageCloudMVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = _foldersService.GetFolderById(1);
+            var userId = User.Identity.GetUserId();
+            var rootId = _foldersService.GetRootId(userId);
+            var model = _foldersService.GetFolderById(rootId, userId);
             return View(model);
         }
 
         [HttpGet]
         public ActionResult Subfolder(int id)
         {
-            var model = _foldersService.GetFolderById(id);
+            var userId = User.Identity.GetUserId();
+            var model = _foldersService.GetFolderById(id, userId);
             return View(model);
         }
 
@@ -39,7 +43,7 @@ namespace ImageCloudMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(NewFolderViewModel model, int id)
+        public ActionResult Create(NewFolderViewModel model, int? id)
         {
             if (!ModelState.IsValid)
             {
@@ -48,15 +52,18 @@ namespace ImageCloudMVC.Controllers
                 //ViewBag.Message = _helperService.ModelErrorsToString(ModelState);
                 return Create();
             }
+            var userId = User.Identity.GetUserId();
+            if (id == null) { id = _foldersService.GetRootId(userId); }
             model.ParentFolderId = id;
-            _foldersService.AddFolder(model);
+            _foldersService.AddFolder(model, userId);
             return RedirectToAction("Subfolder", new { Id = id});
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            _foldersService.Delete(id);
+            var userId = User.Identity.GetUserId();
+            _foldersService.Delete(id, userId);
             return Redirect(Request.UrlReferrer.ToString());
         }
 
@@ -77,7 +84,8 @@ namespace ImageCloudMVC.Controllers
                 //ViewBag.Message = _helperService.ModelErrorsToString(ModelState);
                 return Edit(id);
             }
-            _foldersService.UpdateFolder(id, model);
+            var userId = User.Identity.GetUserId();
+            _foldersService.UpdateFolder(id, model, userId);
             return RedirectToAction("Index");
         }
     }

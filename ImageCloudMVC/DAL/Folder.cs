@@ -19,5 +19,7 @@ namespace ImageCloudMVC.DAL
         public Folder ParentFolder { get; set; }
         [InverseProperty(nameof(ParentFolder))]
         public virtual ICollection<Folder> Folders { get; set; }
+
+        public string UserId { get; set; }
     }
 }

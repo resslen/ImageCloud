@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ImageCloudMVC.Models;
 using ImageCloudMVC.DAL;
+using ImageCloudMVC.Services;
 
 namespace ImageCloudMVC.Controllers
 {
@@ -18,15 +19,13 @@ namespace ImageCloudMVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private FoldersService _foldersService;
 
-        public AccountController()
-        {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, FoldersService foldersService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _foldersService = foldersService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -157,7 +156,8 @@ namespace ImageCloudMVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    _foldersService.AddFolder(new Models.Folders.NewFolderViewModel { Name = "root", Description = "root", ParentFolderId = null}, user.Id);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

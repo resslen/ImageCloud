@@ -5,6 +5,7 @@ using ImageCloudMVC.Models.Folders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNet.Identity;
 using System.Web;
 
 namespace ImageCloudMVC.Services
@@ -20,10 +21,10 @@ namespace ImageCloudMVC.Services
             _filesService = filesService;
         }
 
-        public Folder Find(int id)
+        public Folder Find(int id, string userId)
         {
             var folder = _context.Folders
-                .SingleOrDefault(x => x.Id == id);
+                .SingleOrDefault(x => x.Id == id && x.UserId == userId);
 
             if (folder == null)
             {
@@ -32,20 +33,20 @@ namespace ImageCloudMVC.Services
             return folder;
         }
 
-        public ICollection<FolderModel> GetFolders(int id)
+        public ICollection<FolderModel> GetFolders(int id, string user_id)
         {
             var foldersDal = _context.Folders
-                .Where(x => x.ParentFolderId == id)
+                .Where(x => x.ParentFolderId == id && x.UserId == user_id)
                 .ToList();
             return Mapper.Map<List<FolderModel>>(foldersDal);
         }
 
-        public FolderListViewModel GetFolderById(int id)
+        public FolderListViewModel GetFolderById(int id, string user_id)
         {
             return new FolderListViewModel
             {
-                Folders = GetFolders(id),
-                Files = _filesService.GetFilesForFolder(id)
+                Folders = GetFolders(id, user_id),
+                Files = _filesService.GetFilesForFolder(id, user_id)
             };
         }
 
@@ -54,17 +55,18 @@ namespace ImageCloudMVC.Services
             return new NewFolderViewModel();
         }
 
-        public int AddFolder(NewFolderViewModel model)
+        public int AddFolder(NewFolderViewModel model, string userId)
         {
             var folder = Mapper.Map<Folder>(model);
+            folder.UserId = userId;
             _context.Folders.Add(folder);
             _context.SaveChanges();
             return folder.Id;
         }
 
-        public void Delete(int id)
+        public void Delete(int id, string userId)
         {
-            var folder = Find(id);
+            var folder = Find(id, userId);
             _context.Folders.Remove(folder);
             _context.SaveChanges();
         }
@@ -78,12 +80,23 @@ namespace ImageCloudMVC.Services
             return folder;
         }
 
-        public void UpdateFolder(int id, EditFolderViewModel model)
+        public void UpdateFolder(int id, EditFolderViewModel model, string userId)
         {
-            var folder = Find(id);
+            var folder = Find(id, userId);
             Mapper.Map(model, folder);
             _context.SaveChanges();
         }
+
+        public int GetRootId(string userId)
+        {
+            var folder = _context.Folders
+                .Where(x => x.UserId == userId && x.ParentFolderId == null)
+                .Select(x => x.Id)
+                .Single();
+
+            return folder;
+        }
+
 
     }
 }

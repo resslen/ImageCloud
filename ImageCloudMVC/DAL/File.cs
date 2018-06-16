@@ -15,5 +15,7 @@ namespace ImageCloudMVC.DAL
         public string Description { get; set; }
 
         public Folder Folder { get; set; }
+        public string UserId { get; set; }
+
     }
 }
