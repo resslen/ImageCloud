@@ -3,6 +3,7 @@ using ImageCloudMVC.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -70,7 +71,7 @@ namespace ImageCloudMVC.Controllers
         {
             var userId = User.Identity.GetUserId();
             _filesService.Delete(id, userId);
-            return RedirectToAction("Index");
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         [HttpGet]
@@ -95,5 +96,14 @@ namespace ImageCloudMVC.Controllers
             return RedirectToAction("Details", new { Id = id });
         }
 
+        [HttpPost]
+        public ActionResult Upload(IEnumerable<HttpPostedFileBase> files, int? id)
+        {
+            var userId = User.Identity.GetUserId();
+            if (id == null) { id = _foldersService.GetRootId(userId); }
+            _filesService.UploadFiles(files, id, userId);
+
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

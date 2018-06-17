@@ -8,7 +8,6 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-
 namespace ImageCloudMVC.Services
 {
     public class FilesService
@@ -104,5 +103,29 @@ namespace ImageCloudMVC.Services
                 .ToList();
             return Mapper.Map<List<FileModel>>(filesDal);
         }
+
+        public void UploadFiles (IEnumerable<HttpPostedFileBase> files, int? id, string userId)
+        {
+            string directory = HttpContext.Current.Server.MapPath("~/UploadedFiles/");
+            foreach (var photo in files)
+            {
+                if (photo != null && photo.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(photo.FileName);
+                    var fileSize = photo.ContentLength;
+                    AddFile(new NewFileViewModel
+                    {
+                        Name = fileName,
+                        DateOfUpload = DateTime.Now,
+                        Description = "",
+                        Resolution = 0,
+                        Size = fileSize,
+                    }, userId, id);
+                    photo.SaveAs(System.IO.Path.Combine(directory, fileName));
+                }
+            }
+        }
+
+
     }
 }

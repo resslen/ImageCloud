@@ -10,6 +10,15 @@
     @Html.ActionLink("Create New Folder", "Create")
     @Html.ActionLink("Create New File", "Create", "Files")
 </p>
+
+@using (Html.BeginForm("Upload", "Files", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div id="multiple">
+        <input type="file" class="multiple" name="files" multiple />
+    </div>
+    <button class="btn btn-default">Upload</button>
+}
+
 <table class="table">
     <tr>
         <th>

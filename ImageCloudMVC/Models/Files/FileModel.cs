@@ -10,7 +10,7 @@ namespace ImageCloudMVC.Models.Files
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime DateOfUpload { get; set; }
-        public string Size { get; set; }
+        public int Size { get; set; }
         public int Resolution { get; set; }
         public string Description { get; set; }
     }
