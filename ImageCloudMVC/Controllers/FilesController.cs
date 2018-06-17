@@ -1,5 +1,6 @@
 ﻿using ImageCloudMVC.Models.Files;
 using ImageCloudMVC.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace ImageCloudMVC.Controllers
     public class FilesController : Controller
     {
         private FilesService _filesService;
+        private FoldersService _foldersService;
 
-        public FilesController(FilesService filesService)
+        public FilesController(FilesService filesService, FoldersService foldersService)
         {
             _filesService = filesService;
+            _foldersService = foldersService;
         }
 
         [HttpGet]
@@ -34,7 +37,8 @@ namespace ImageCloudMVC.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var model = _filesService.FileById(id);
+            var userId = User.Identity.GetUserId();
+            var model = _filesService.FileById(id, userId);
             return View(model);
         }
 
@@ -46,7 +50,7 @@ namespace ImageCloudMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(NewFileViewModel model)
+        public ActionResult Create(NewFileViewModel model, int? id)
         {
             if (!ModelState.IsValid)
             {
@@ -55,14 +59,17 @@ namespace ImageCloudMVC.Controllers
                 //ViewBag.Message = _helperService.ModelErrorsToString(ModelState);
                 return Create();
             }
-            var id = _filesService.AddFile(model);
-            return RedirectToAction("Details", new { Id = id });
+            var userId = User.Identity.GetUserId();
+            if (id == null) { id = _foldersService.GetRootId(userId); }
+            var id_file = _filesService.AddFile(model, userId, id);
+            return RedirectToAction("Details", new { Id = id_file });
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            _filesService.Delete(id);
+            var userId = User.Identity.GetUserId();
+            _filesService.Delete(id, userId);
             return RedirectToAction("Index");
         }
 
@@ -83,7 +90,8 @@ namespace ImageCloudMVC.Controllers
                 //ViewBag.Message = _helperService.ModelErrorsToString(ModelState);
                 return Edit(id);
             }
-            _filesService.UpdateFile(id, model);
+            var userId = User.Identity.GetUserId();
+            _filesService.UpdateFile(id, model,userId);
             return RedirectToAction("Details", new { Id = id });
         }
 

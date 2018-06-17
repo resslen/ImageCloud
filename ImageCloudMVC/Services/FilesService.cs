@@ -20,11 +20,11 @@ namespace ImageCloudMVC.Services
             _context = context;
         }
 
-        public File Find(int id)
+        public File Find(int id, string userId)
         {
             var file = _context.Files
                 .Include(x => x.Folder)
-                .SingleOrDefault(x => x.Id == id);
+                .SingleOrDefault(x => x.Id == id && x.UserId == userId);
             
             if (file == null)
             {
@@ -41,6 +41,7 @@ namespace ImageCloudMVC.Services
             return filesDal;
         }
 
+        // chyba metoda ta jest do wywalenia
         public IEnumerable<FilesView> GetRootFiles()
         {
             //zmieniac aby id nie bylo na sztywno tylko samo pobieralo sobie id roota
@@ -52,9 +53,11 @@ namespace ImageCloudMVC.Services
             return filesDal;
         }
 
-        public int AddFile(NewFileViewModel model)
+        public int AddFile(NewFileViewModel model, string userId, int? id)
         {
             var file = Mapper.Map<File>(model);
+            file.UserId = userId;
+            file.ParentFolderId = id;
             _context.Files.Add(file);
             _context.SaveChanges();
             return file.Id;
@@ -65,15 +68,15 @@ namespace ImageCloudMVC.Services
             return new NewFileViewModel();
         }
 
-        public FileViewModel FileById(int id)
+        public FileViewModel FileById(int id, string userId)
         {
-            var file = Find(id);
+            var file = Find(id, userId);
             return Mapper.Map<FileViewModel>(file);
         }
 
-        public void Delete(int id)
+        public void Delete(int id, string userId)
         {
-            var file = Find(id);
+            var file = Find(id, userId);
             _context.Files.Remove(file);
             _context.SaveChanges();
         }
@@ -87,9 +90,9 @@ namespace ImageCloudMVC.Services
             return file;
         }
 
-        public void UpdateFile(int id, EditFileViewModel model)
+        public void UpdateFile(int id, EditFileViewModel model, string userId)
         {
-            var file = Find(id);
+            var file = Find(id, userId);
             Mapper.Map(model, file);
             _context.SaveChanges();
         }
@@ -97,7 +100,7 @@ namespace ImageCloudMVC.Services
         public ICollection<FileModel> GetFilesForFolder(int id, string user_id)
         {
             var filesDal = _context.Files
-                .Where(x => x.Folder.Id == id && x.UserId == user_id)
+                .Where(x => x.ParentFolderId == id && x.UserId == user_id)
                 .ToList();
             return Mapper.Map<List<FileModel>>(filesDal);
         }

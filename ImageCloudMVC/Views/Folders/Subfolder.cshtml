@@ -9,7 +9,8 @@
 <h2>Subfolder</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { id = url})
+    @Html.ActionLink("Create New", "Create", new { id = url })
+    @Html.ActionLink("Create New File", "Create", "Files", new { id = url }, null)
 </p>
 <table class="table">
     <tr>

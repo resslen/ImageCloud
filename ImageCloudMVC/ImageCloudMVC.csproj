@@ -234,6 +234,14 @@
     <Compile Include="Migrations\201806161820285_userid_int_toString.Designer.cs">
       <DependentUpon>201806161820285_userid_int_toString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806171056319_filedal.cs" />
+    <Compile Include="Migrations\201806171056319_filedal.Designer.cs">
+      <DependentUpon>201806171056319_filedal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806171101565_test.cs" />
+    <Compile Include="Migrations\201806171101565_test.Designer.cs">
+      <DependentUpon>201806171101565_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountListView.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -360,6 +368,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806161820285_userid_int_toString.resx">
       <DependentUpon>201806161820285_userid_int_toString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171056319_filedal.resx">
+      <DependentUpon>201806171056319_filedal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171101565_test.resx">
+      <DependentUpon>201806171101565_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

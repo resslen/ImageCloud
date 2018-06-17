@@ -16,6 +16,5 @@ namespace ImageCloudMVC.Models.Files
         public int Resolution { get; set; }
         public string Description { get; set; }
 
-        public int FolderId { get; set; }
     }
 }
