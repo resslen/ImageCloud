@@ -45,3 +45,8 @@ dt {
     font-family: Cambria;
     font-size: 18px;
 }
+
+input[type="file"] {
+    display: none;
+}
+
