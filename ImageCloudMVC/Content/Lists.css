@@ -1,0 +1,13 @@
+﻿tr {
+    color: white;
+    font-family: Cambria;
+}
+
+th {
+    color: white;
+    font-family: Cambria;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #9D9FC8;
+}

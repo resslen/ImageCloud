@@ -1,12 +1,14 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: url('/ViewImages/bg.jpg')
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-image: url("~/ViewImages/bg.jpg")
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +23,25 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+tr {
+    color: white;
+    font-family: Cambria;
+}
+
+th {
+    color: aqua;
+    font-family: Cambria;
+    font-size: 20px;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #120F20;
+}
+
+dt {
+    color: white;
+    font-family: Cambria;
+    font-size: 18px;
 }

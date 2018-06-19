@@ -17,15 +17,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a style="padding-top: 10px; padding-right: 20px;" href="/" class="navbar-left"><img src="~/ViewImages/icon.png" style="width:40px;"/></a>
+                <a style="color:aqua; font-family: '28 Days Later'; font-size: 25px; padding-right: 10px" href="/" class="navbar-brand">ImageCloud</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav" style="font-family: '28 Days Later'; font-size: 18px;">
+                    <li>@Html.ActionLink("Start", "Index", "Home")</li>
+                    <li>@Html.ActionLink("O nas", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Folders", "Index", "Folders")</li>
-                    <li>@Html.ActionLink("Files", "Index", "Files")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

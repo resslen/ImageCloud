@@ -204,9 +204,11 @@
     <Compile Include="Controllers\FoldersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="DAL\File.cs" />
     <Compile Include="DAL\Folder.cs" />
     <Compile Include="DAL\ImageCloudContext.cs" />
+    <Compile Include="DAL\News.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,6 +248,14 @@
     <Compile Include="Migrations\201806171320432_sizeFromStingToInt.Designer.cs">
       <DependentUpon>201806171320432_sizeFromStingToInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806181750063_news.cs" />
+    <Compile Include="Migrations\201806181750063_news.Designer.cs">
+      <DependentUpon>201806181750063_news.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806181751574_news2.cs" />
+    <Compile Include="Migrations\201806181751574_news2.Designer.cs">
+      <DependentUpon>201806181751574_news2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountListView.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -261,6 +271,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Files\NewFileViewModel.cs" />
+    <Compile Include="Models\NewsListView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FilesService.cs" />
     <Compile Include="Services\FoldersService.cs" />
@@ -269,6 +280,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Lists.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -340,6 +352,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="ViewImages\" />
+    <Folder Include="Views\News\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -382,6 +396,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806171320432_sizeFromStingToInt.resx">
       <DependentUpon>201806171320432_sizeFromStingToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806181750063_news.resx">
+      <DependentUpon>201806181750063_news.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806181751574_news2.resx">
+      <DependentUpon>201806181751574_news2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

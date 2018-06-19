@@ -31,6 +31,7 @@ namespace ImageCloudMVC.DAL
 
         public DbSet<File> Files { get; set; }
         public DbSet<Folder> Folders { get; set; }
+        public DbSet<News> News { get; set; }
     }
 
 }

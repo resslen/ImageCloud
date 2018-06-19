@@ -4,81 +4,88 @@
     ViewBag.Title = "View";
 }
 
-<h2>View</h2>
+@Styles.Render("~/Content/css")
 
-<p>
-    @Html.ActionLink("Create New Folder", "Create")
-    @Html.ActionLink("Create New File", "Create", "Files")
-</p>
+<br />
+<button type="button" class="btn btn-default">@Html.ActionLink("Utwórz nowy folder", "Create")</button>
+<br />
+<br />
+
 
 @using (Html.BeginForm("Upload", "Files", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div id="multiple">
-        <input type="file" class="multiple" name="files" multiple />
+        <input style="color:aliceblue" type="file" class="multiple" name="files" multiple />
     </div>
+    <br />
     <button class="btn btn-default">Upload</button>
 }
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AmountOfFiles)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Folders)
-    {
+<h2 style="font-family: '28 Days Later'; font-size: 25px; color:aliceblue;">Foldery</h2>
+<table class="table table-hover ">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AmountOfFiles)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Subfolder", "Subfolder", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.AmountOfFiles)</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Folders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountOfFiles)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Subfolder", "Subfolder", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-<table class="table">
-    @foreach (var item in Model.Files)
-    {
+<hr />
+<h2 style="font-family: '28 Days Later'; font-size: 25px; color:aliceblue;">Pliki</h2>
+<table class="table table-hover">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfUpload)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resolution)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Files", new { id = item.Id }, null) |
-                @Html.ActionLink("Details", "Details", "Files", new { id = item.Id }, null) |
-                @Html.ActionLink("Delete", "Delete", "Files", new { id = item.Id }, null)
-            </td>
+            <th>Nazwa pliku</th>
+            <th>Data wysłania</th>
+            <th>Rozmiar</th>
+            <th>Opis</th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Files)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfUpload)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Files", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Files", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Files", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
