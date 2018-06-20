@@ -13,10 +13,12 @@ namespace ImageCloudMVC.Services
     public class FilesService
     {
         private readonly ImageCloudContext _context;
+       // private readonly FoldersService _foldersService;
 
         public FilesService(ImageCloudContext context)
         {
             _context = context;
+           // _foldersService = foldersService;
         }
 
         public File Find(int id, string userId)
@@ -77,6 +79,7 @@ namespace ImageCloudMVC.Services
         {
             var file = Find(id, userId);
             _context.Files.Remove(file);
+           // _foldersService.AmountOfFiles((int)file.ParentFolderId, userId, "sub");
             _context.SaveChanges();
         }
 
@@ -122,6 +125,7 @@ namespace ImageCloudMVC.Services
                         Size = fileSize,
                     }, userId, id);
                     photo.SaveAs(System.IO.Path.Combine(directory, fileName));
+                    //_foldersService.AmountOfFiles((int)id, userId, "add");
                 }
             }
         }

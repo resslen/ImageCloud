@@ -88,5 +88,13 @@ namespace ImageCloudMVC.Controllers
             _foldersService.UpdateFolder(id, model, userId);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult Move(int source, int destination)
+        {
+            var userId = User.Identity.GetUserId();
+            _foldersService.Move(source, destination, userId);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

@@ -89,14 +89,40 @@ namespace ImageCloudMVC.Services
 
         public int GetRootId(string userId)
         {
-            var folder = _context.Folders
+            if (userId != null)
+            {
+                var folder = _context.Folders
                 .Where(x => x.UserId == userId && x.ParentFolderId == null)
                 .Select(x => x.Id)
                 .Single();
-
-            return folder;
+                return folder;
+            }
+            else
+                return -1;
         }
 
+        public void Move(int source, int destination, string userId)
+        {
+            var folder = Find(destination, userId);
+            var file = _filesService.Find(source, userId);
 
+            file.ParentFolderId = folder.Id;
+            folder.AmountOfFiles++;
+            _context.SaveChanges();
+        }
+
+        public void AmountOfFiles(int id, string userId, string operation)
+        {
+            var folder = Find(id, userId);
+            if(operation == "add")
+            {
+                folder.AmountOfFiles++;
+            }else
+            if( operation == "sub")
+            {
+                folder.AmountOfFiles--;
+            }
+            _context.SaveChanges();
+        }
     }
 }

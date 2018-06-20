@@ -100,7 +100,7 @@ namespace ImageCloudMVC.Controllers
         public ActionResult Upload(IEnumerable<HttpPostedFileBase> files, int? id)
         {
             var userId = User.Identity.GetUserId();
-            if (id == null) { id = _foldersService.GetRootId(userId); }
+            if (id == null) { var myId = _foldersService.GetRootId(userId); }
             _filesService.UploadFiles(files, id, userId);
 
             return Redirect(Request.UrlReferrer.ToString());
