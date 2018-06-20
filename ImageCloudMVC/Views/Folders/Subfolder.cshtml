@@ -8,12 +8,33 @@
 
 @Styles.Render("~/Content/css")
 
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev, id) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        $.ajax({
+        type: 'POST',
+        url: '@Url.Action("Move")',
+        data: { 'source': data, 'destination': id}
+    })
+    }
+</script>
+
 <div style="padding-top: 20px;">
     @Html.ActionLink("Utwórz nowy folder", "Create", new { id = url }, new { @class = "btn btn-primary", @style = "color:white" })
 </div>
 
 <div style="padding-top: 20px;">
-    @using (Html.BeginForm("Upload", "Files", new { id = url }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Upload", "Files", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div id="multiple">
             <label class="custom-file-upload; btn btn-primary">
@@ -40,9 +61,11 @@
         <tbody>
             @foreach (var item in Model.Folders)
             {
-                <tr>
+                <tr id="@item.Id" draggable="true" ondragstart="drag(event)">
                     <td>
-                        <img src="~/ViewImages/folder.png" style="width:30px; height:30px" />
+                        <div id="@item.Id" ondrop="drop(event, id)" ondragover="allowDrop(event)">
+                            <img src="~/ViewImages/folder.png" style="width:30px; height:30px" />
+                        </div>
                     </td>
                     <td>
                         <div style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; height:55px; width:200px">
@@ -83,9 +106,9 @@
         <tbody>
             @foreach (var item in Model.Files)
             {
-                <tr>
+                <tr id="@item.Id" draggable="true" ondragstart="drag(event)">
                     <td>
-                        <img src="~/UploadedFiles/@Html.DisplayFor(modelItem => item.Name)" style="width:40px; height:40px" />
+                        <img src="~/UploadedFiles/@Html.DisplayFor(modelItem => item.Name)" style="width:40px; height:40px" id="@item.Id" draggable="true" ondragstart="drag(event)" />
                     </td>
                     <td>
                         <div style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; height:55px; width:200px">
