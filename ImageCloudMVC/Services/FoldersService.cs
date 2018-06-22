@@ -33,20 +33,25 @@ namespace ImageCloudMVC.Services
             return folder;
         }
 
-        public ICollection<FolderModel> GetFolders(int id, string user_id)
+        public ICollection<FolderModel> GetFolders(int id, string user_id, string searchString)
         {
             var foldersDal = _context.Folders
-                .Where(x => x.ParentFolderId == id && x.UserId == user_id)
-                .ToList();
+                .Where(x => x.ParentFolderId == id && x.UserId == user_id);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                foldersDal = foldersDal
+                    .Where(x => x.Name.Contains(searchString));
+            }
+            foldersDal.ToList();
             return Mapper.Map<List<FolderModel>>(foldersDal);
         }
 
-        public FolderListViewModel GetFolderById(int id, string user_id)
+        public FolderListViewModel GetFolderById(int id, string user_id, string searchString, string searchString2)
         {
             return new FolderListViewModel
             {
-                Folders = GetFolders(id, user_id),
-                Files = _filesService.GetFilesForFolder(id, user_id)
+                Folders = GetFolders(id, user_id, searchString),
+                Files = _filesService.GetFilesForFolder(id, user_id, searchString2)
             };
         }
 

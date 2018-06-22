@@ -99,11 +99,16 @@ namespace ImageCloudMVC.Services
             _context.SaveChanges();
         }
 
-        public ICollection<FileModel> GetFilesForFolder(int id, string user_id)
+        public ICollection<FileModel> GetFilesForFolder(int id, string user_id, string searchString)
         {
             var filesDal = _context.Files
-                .Where(x => x.ParentFolderId == id && x.UserId == user_id)
-                .ToList();
+                .Where(x => x.ParentFolderId == id && x.UserId == user_id);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                filesDal = filesDal
+                    .Where(x => x.Name.Contains(searchString));
+            }
+            filesDal.ToList();
             return Mapper.Map<List<FileModel>>(filesDal);
         }
 

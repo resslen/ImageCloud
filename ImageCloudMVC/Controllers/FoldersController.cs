@@ -20,19 +20,19 @@ namespace ImageCloudMVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string searchString2)
         {
             var userId = User.Identity.GetUserId();
             var rootId = _foldersService.GetRootId(userId);
-            var model = _foldersService.GetFolderById(rootId, userId);
+            var model = _foldersService.GetFolderById(rootId, userId, searchString, searchString2);
             return View(model);
         }
 
         [HttpGet]
-        public ActionResult Subfolder(int id)
+        public ActionResult Subfolder(int id, string searchString, string searchString2)
         {
             var userId = User.Identity.GetUserId();
-            var model = _foldersService.GetFolderById(id, userId);
+            var model = _foldersService.GetFolderById(id, userId, searchString, searchString2);
             return View(model);
         }
 
